@@ -21,12 +21,14 @@ public class BankUser implements Runnable {
                 synchronized (bank) {
                     if (bank.hasMoney(moneyWithdraw)) {
                         bank.getMoney(moneyWithdraw);
-                    } else break;
+                    } else break; //нарушение JCC - break; на отдельной строке, желательно в { }
                 }
             }
         } catch (NoMoneyException e) {
             System.out.println(e.getMessage());
         }
+        //Confusing log. На самом деле это не thread закончил работу.
+        //У тебя здесь Runnable и этому классу не известно - он один работает в потоке или нет.
         System.out.println(name + " thread finished work.");
     }
 }

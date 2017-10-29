@@ -6,10 +6,12 @@ import java.time.LocalTime;
 
 public class Philosopher implements Runnable {
 
+    //Здесь нет необходимости использования класса Fork. Можно использовать просто Object
     private final Fork leftFork;
     private final Fork rightFork;
     private final String name;
 
+    //Нарушение JCC - статические поля должны быть объявлены выше нестатических
     private static LocalTime localTime = LocalTime.now().plusSeconds(5);
 
     public Philosopher(Fork leftFork, Fork rightFork, String name) {

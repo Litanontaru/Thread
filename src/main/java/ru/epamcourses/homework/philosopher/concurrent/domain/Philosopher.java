@@ -10,6 +10,7 @@ public class Philosopher implements Runnable {
     private final Fork rightFork;
     private final String name;
 
+    //Нарушение JCC - статические поля должны быть объявлены выше нестатических
     private static LocalTime localTime = LocalTime.now().plusSeconds(5);
 
     public Philosopher(Fork leftFork, Fork rightFork, String name) {
@@ -38,6 +39,9 @@ public class Philosopher implements Runnable {
                 leftFork.lock();
                 rightFork.lock();
                 eating();
+                //Существует строгая практика делать unlock в секции finally,
+                //иначе при выпадении Error или Exception lock не будет отпушени
+                //и система войдёт в неконсистентное состояние
                 leftFork.unlock();
                 rightFork.unlock();
                 thinking();

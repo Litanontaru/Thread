@@ -21,6 +21,7 @@ public class BankUser implements Runnable {
                 if (bank.hasMoney(moneyWithdraw)) {
                     bank.getMoney(moneyWithdraw);
                 } else {
+                    //обычно такие операции, как release делают в секции finally, чтобы гарантированно отпускать
                     bank.getSemaphore().release();
                     break;
                 }

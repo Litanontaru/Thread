@@ -8,6 +8,7 @@ import java.util.concurrent.Executors;
 
 public class Test {
     public static void main(String[] args) {
+        //Здесь нет необходимости использования класса Fork. Можно использовать просто Object
         Fork fork1 = new Fork();
         Fork fork2 = new Fork();
         Fork fork3 = new Fork();
